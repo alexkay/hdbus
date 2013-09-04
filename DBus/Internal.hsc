@@ -9,7 +9,7 @@
 
 module DBus.Internal where
 
-import Control.Exception (throwDyn)
+import Control.Exception (throw)
 import Control.Monad (when)
 import DBus (Error(..))
 import Foreign
@@ -57,6 +57,6 @@ withErrorP f =
       else do name <- #{peek DBusError, name} err >>= peekCString
               msg  <- #{peek DBusError, message} err >>= peekCString
               error_free err
-              throwDyn $ Error name msg
+              throw $ Error name msg
 
 -- vim: set ts=2 sw=2 tw=72 et ft=haskell :

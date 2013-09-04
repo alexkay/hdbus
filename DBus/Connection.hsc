@@ -24,7 +24,7 @@ import Control.Exception (bracket)
 import Control.Monad (when)
 import Foreign
 import Foreign.C.String
-import Foreign.C.Types (CInt)
+import Foreign.C.Types (CInt(..))
 
 import DBus.Internal
 import DBus.Message

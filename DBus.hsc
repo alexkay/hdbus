@@ -24,6 +24,7 @@ module DBus (
 
 import DBus.Shared
 import Data.Typeable (Typeable(..), mkTyConApp, mkTyCon)
+import Control.Exception
 
 -- |'Error's carry a name (like \"org.freedesktop.dbus.Foo\") and a
 -- message (like \"connection failed\").
@@ -32,5 +33,6 @@ instance Typeable Error where
   typeOf _ = mkTyConApp (mkTyCon "DBus.Error") []
 instance Show Error where
   show (Error name message) = "D-Bus Error (" ++ name ++ "): " ++ message
+instance Exception Error
 
 -- vim: set ts=2 sw=2 tw=72 et ft=haskell :
