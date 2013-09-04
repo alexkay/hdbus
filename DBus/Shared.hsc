@@ -14,7 +14,7 @@ module DBus.Shared (
   serviceDBus,
   pathDBus, pathLocal,
   interfaceDBus, interfaceIntrospectable, interfaceLocal,
-  
+
 ) where
 
 import Foreign

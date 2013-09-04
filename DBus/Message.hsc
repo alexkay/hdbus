@@ -1,5 +1,4 @@
-{-# LANGUAGE PatternSignatures, TypeSynonymInstances, FlexibleInstances #-}
-{-# OPTIONS -fglasgow-exts #-}
+{-# LANGUAGE ScopedTypeVariables, DeriveDataTypeable, TypeSynonymInstances, FlexibleInstances #-}
 -- HDBus -- Haskell bindings for D-Bus.
 -- Copyright (C) 2006 Evan Martin <martine@danga.com>
 
@@ -510,7 +509,7 @@ withIter = allocaBytes #{size DBusMessageIter}
 
 -- |Retrieve the arguments from a message.
 args :: Message -> [Arg]
-args msg = Foreign.unsafePerformIO $
+args msg = System.IO.Unsafe.unsafePerformIO $
   withForeignPtr msg $ \msg -> do
     withIter $ \iter -> do
       has_args <- message_iter_init msg iter
