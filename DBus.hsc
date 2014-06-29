@@ -4,6 +4,8 @@
 #define DBUS_API_SUBJECT_TO_CHANGE
 #include "dbus/dbus.h"
 
+{-# LANGUAGE CPP #-}
+
 module DBus (
   module DBus.Shared,
 
@@ -23,7 +25,13 @@ module DBus (
 ) where
 
 import DBus.Shared
+
+#if MIN_VERSION_base(4,7,0)
+import Data.OldTypeable (Typeable(..), mkTyConApp, mkTyCon3)
+#else
 import Data.Typeable (Typeable(..), mkTyConApp, mkTyCon3)
+#endif
+
 import Control.Exception
 
 -- |'Error's carry a name (like \"org.freedesktop.dbus.Foo\") and a
