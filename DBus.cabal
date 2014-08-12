@@ -1,5 +1,5 @@
 name:               DBus
-version:            0.5.0
+version:            0.5.1
 cabal-version:      >= 1.6
 build-type:         Configure
 license:            BSD3
@@ -31,4 +31,4 @@ source-repository head
 source-repository this
     type:               git
     location:           git://github.com/alexkay/hdbus.git
-    tag:                0.5.0
+    tag:                0.5.1

@@ -1,4 +1,4 @@
-AC_INIT([HDBus], [0.5.0])
+AC_INIT([HDBus], [0.5.1])
 AC_CONFIG_SRCDIR([DBus.cabal])
 PKG_CHECK_MODULES(DBUS, [dbus-1])
 AC_CONFIG_FILES([DBus.buildinfo])

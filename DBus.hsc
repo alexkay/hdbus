@@ -4,7 +4,7 @@
 #define DBUS_API_SUBJECT_TO_CHANGE
 #include "dbus/dbus.h"
 
-{-# LANGUAGE CPP #-}
+{-# LANGUAGE CPP, DeriveDataTypeable #-}
 
 module DBus (
   module DBus.Shared,
@@ -25,20 +25,12 @@ module DBus (
 ) where
 
 import DBus.Shared
-
-#if MIN_VERSION_base(4,7,0)
-import Data.OldTypeable (Typeable(..), mkTyConApp, mkTyCon3)
-#else
-import Data.Typeable (Typeable(..), mkTyConApp, mkTyCon3)
-#endif
-
+import Data.Typeable
 import Control.Exception
 
 -- |'Error's carry a name (like \"org.freedesktop.dbus.Foo\") and a
 -- message (like \"connection failed\").
-data Error = Error String String
-instance Typeable Error where
-  typeOf _ = mkTyConApp (mkTyCon3 "DBus.Error" "" "") []
+data Error = Error String String deriving (Typeable)
 instance Show Error where
   show (Error name message) = "D-Bus Error (" ++ name ++ "): " ++ message
 instance Exception Error
